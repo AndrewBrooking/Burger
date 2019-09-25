@@ -5,19 +5,22 @@ const router = express.Router();
 const model = require("../models/model.js");
 
 router.get("/", function (req, res) {
-    let hbObj = {
-        // ** ADD DATA FOR HANDLEBARS HERE **
-    };
-    res.render("index", hbObj);
+    model.all(function (result) {
+        let hbObj = {
+            data: data
+        };
+
+        res.render("index", hbObj);
+    });
 });
 
 router.post("/api/model", function (req, res) {
     model.create(
         [
-            // ** ADD COLUMN NAMES HERE **
+            "burger_name", "devoured"
         ],
         [
-            // ** ADD DATA VALUES HERE **
+            req.body.burger_name, false
         ],
         function (result) {
             // Send back the ID of the new quote
