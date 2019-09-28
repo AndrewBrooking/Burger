@@ -1,12 +1,7 @@
 // Set up MySQL connection.
 const mysql = require("mysql");
 
-const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "password",
-  database: "burgers_db"
-});
+const connection = mysql.createConnection(process.env.JAWSDB_MARIA_URL);
 
 // Make connection.
 connection.connect(function (err) {
