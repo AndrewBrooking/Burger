@@ -1,7 +1,7 @@
 // Import the ORM to create functions that will interact with the database.
 const orm = require("../config/orm.js");
 
-const TABLE_NAME = ""; // ** PUT YOUR TABLE NAME HERE
+const TABLE_NAME = "burgers";
 
 var model = {
     all: function(cb) {
@@ -16,11 +16,6 @@ var model = {
     },
     update: function(cols, condition, cb) {
       orm.update(TABLE_NAME, cols, condition, function(res) {
-        cb(res);
-      });
-    },
-    delete: function(condition, cb) {
-      orm.delete(TABLE_NAME, condition, function(res) {
         cb(res);
       });
     }

@@ -4,17 +4,19 @@ const router = express.Router();
 // Import the model to use its database functions.
 const model = require("../models/model.js");
 
+const API_ROUTE = "/api/burgers";
+
 router.get("/", function (req, res) {
     model.all(function (result) {
         let hbObj = {
-            data: data
+            data: result
         };
 
         res.render("index", hbObj);
     });
 });
 
-router.post("/api/model", function (req, res) {
+router.post(API_ROUTE, function (req, res) {
     model.create(
         [
             "burger_name", "devoured"
@@ -31,25 +33,13 @@ router.post("/api/model", function (req, res) {
     );
 });
 
-router.put("/api/model/:id", function (req, res) {
+router.put(API_ROUTE + "/:id", function (req, res) {
     let condition = "id = " + req.params.id;
 
     model.update({
-        // ** ADD UPDATE DATA HERE **
+        devoured: req.body.devoured
     }, condition, function (result) {
         if (result.changedRows == 0) {
-            return res.status(404).end();
-        }
-
-        res.status(200).end();
-    });
-});
-
-router.delete("/api/model/:id", function (req, res) {
-    let condition = "id = " + req.params.id;
-
-    model.delete(condition, function (result) {
-        if (result.affectedRows === 0) {
             return res.status(404).end();
         }
 
