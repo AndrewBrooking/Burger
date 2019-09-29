@@ -1,7 +1,7 @@
 // Set up MySQL connection.
 const mysql = require("mysql");
 
-const connection = mysql.createConnection(process.env.JAWSDB_MARIA_URL);
+const connection = mysql.createConnection(process.env.JAWSDB_URL);
 
 // Make connection.
 connection.connect(function (err) {
